@@ -64,10 +64,10 @@
     <build>
     <plugins>
         <!--Spring Boot 插件-->
-        <plugin>
+        <!--<plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
-        </plugin>
+        </plugin>-->
         <!--mybatis 自动生成代码插件-->
         <plugin>
           <groupId>org.mybatis.generator</groupId>
