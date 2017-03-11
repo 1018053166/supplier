@@ -1,4 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 
@@ -23,14 +26,14 @@
 
 
 </div>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js?v=2.1.4"></script>
-<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js?v=3.3.5"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins/layer/layer.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/hplus.min.js?v=4.0.0"></script>
-<script src="${pageContext.request.contextPath}/resources/js/contabs.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins/pace/pace.min.js"></script>
+<script type="text/javascript" src="${ctx}/resources/js/jquery.min.js?v=2.1.4"></script>
+<script type="text/javascript" src="${ctx}/resources/js/bootstrap.min.js?v=3.3.5"></script>
+<script type="text/javascript" src="${ctx}/resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script type="text/javascript" src="${ctx}/resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="${ctx}/resources/js/plugins/layer/layer.min.js"></script>
+<script type="text/javascript" src="${ctx}/resources/js/hplus.min.js?v=4.0.0"></script>
+<script type="text/javascript" src="${ctx}/resources/js/contabs.min.js"></script>
+<script type="text/javascript" src="${ctx}/resources/js/plugins/pace/pace.min.js"></script>
 </body>
 
 </html>

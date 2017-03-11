@@ -1,4 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="row border-bottom">
     <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
@@ -17,7 +19,7 @@
                     <li class="m-t-xs">
                         <div class="dropdown-messages-box">
                             <a href="profile.html" class="pull-left">
-                                <img alt="image" class="img-circle" src="img/a7.jpg">
+                                <img alt="image" class="img-circle" src="/resources/img/a7.jpg">
                             </a>
                             <div class="media-body">
                                 <small class="pull-right">46小时前</small>
@@ -31,7 +33,7 @@
                     <li>
                         <div class="dropdown-messages-box">
                             <a href="profile.html" class="pull-left">
-                                <img alt="image" class="img-circle" src="img/a4.jpg">
+                                <img alt="image" class="img-circle" src="/resources/img/a4.jpg">
                             </a>
                             <div class="media-body ">
                                 <small class="pull-right text-navy">25小时前</small>
