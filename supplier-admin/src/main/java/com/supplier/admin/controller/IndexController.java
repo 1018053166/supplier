@@ -13,39 +13,110 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Date;
 
 /**
- * Created by LinQ on 2017/3/7.
+ * IndexController
  */
 @Controller
 @RequestMapping("/")
 public class IndexController {
 
+
     private Logger logger = Logger.getLogger(this.getClass());
+
 
     @Autowired
     private AdminService adminService;
 
-    @RequestMapping("/")
-    public String index(){
-        System.out.println("========index=============");
-        logger.info("=======index==========");
 
+    /**
+     * 首页
+     *
+     * @return
+     */
+    @RequestMapping("/")
+    public String i() {
+        logger.info("=======/==========");
         return "index";
     }
 
-    @RequestMapping("/aa")
-    public String aa(){
-        System.out.println("IndexController.aa=========");
+    /**
+     * 首页
+     *
+     * @return
+     */
+    @RequestMapping("/index.html")
+    public String index() {
+        logger.info("=======index==========");
+        return "index";
+    }
+
+
+    /**
+     * 跳转到登录页面
+     *
+     * @return
+     */
+    @RequestMapping("/login.html")
+    public String login() {
+        logger.info("=====login=====");
+        return "/admin/login";
+    }
+
+
+    /**
+     * 首页主页面
+     * @return
+     */
+    @RequestMapping("main.html")
+    public String main(){
+        logger.info("=====main=====");
+        return "/include/main";
+    }
+
+
+    /**
+     * 商品管理页面
+     * @return
+     */
+    @RequestMapping("product.html")
+    public String product(){
+        logger.info("=====product=====");
+        return "/product/product";
+    }
+
+    /**
+     * 添加商品页面
+     *
+     * @return
+     */
+    @RequestMapping("product/add.html")
+    public String addProduct(){
+        logger.info("=====add product=====");
+        return "/product/add";
+    }
+
+
+
+    /**
+     * Test
+     *
+     * @return
+     */
+    @RequestMapping("/test")
+    public String test() {
         EncrypDes des = null;
         try {
             des = EncrypDes.getInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         Admin admin = new Admin();
+
         admin.setAdminId(UUIDUtil.getUUID());
         admin.setAdminAccount("xiaoba");
         admin.setAdminEmail("1018053166@qq.com");
         admin.setAdminNickname("小八");
+
         try {
             admin.setAdminPwd(des.encrypt("123456"));
         } catch (Exception e) {
@@ -57,13 +128,9 @@ public class IndexController {
         admin.setCreateTime(new Date());
         admin.setLastTime(new Date());
         admin.setLastIp(IpUtils.getIpAddress());
-
         adminService.addAdmin(admin);
-
         return "index";
     }
-
-
 
 
 }

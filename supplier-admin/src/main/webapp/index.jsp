@@ -18,7 +18,7 @@
     <div id="page-wrapper" class="gray-bg dashbard-1">
         <jsp:include page="include/rightTop.jsp" />
         <div class="row J_mainContent" id="content-main">
-            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="index_v2.html?v=4.0" frameborder="0" data-id="index_v2.html" seamless></iframe>
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="${ctx}/main.html" frameborder="0" data-id="index_v2.html" seamless></iframe>
         </div>
         <jsp:include page="include/footer.jsp" />
     </div>

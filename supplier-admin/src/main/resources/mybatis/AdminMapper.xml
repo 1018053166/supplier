@@ -163,4 +163,12 @@
   </update>
 
 
+  <!--登录-->
+  <select id="login" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sup_admin
+    where admin_account = #{username} AND admin_pwd = #{password}
+  </select>
+
 </mapper>
