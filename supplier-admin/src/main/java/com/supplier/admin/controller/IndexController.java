@@ -16,6 +16,7 @@ import java.util.Date;
  * Created by LinQ on 2017/3/7.
  */
 @Controller
+@RequestMapping("/")
 public class IndexController {
 
     private Logger logger = Logger.getLogger(this.getClass());
@@ -27,6 +28,13 @@ public class IndexController {
     public String index(){
         System.out.println("========index=============");
         logger.info("=======index==========");
+
+        return "index";
+    }
+
+    @RequestMapping("/aa")
+    public String aa(){
+        System.out.println("IndexController.aa=========");
         EncrypDes des = null;
         try {
             des = EncrypDes.getInstance();
@@ -54,8 +62,6 @@ public class IndexController {
 
         return "index";
     }
-
-
 
 
 
