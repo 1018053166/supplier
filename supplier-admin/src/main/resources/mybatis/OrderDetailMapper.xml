@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.supplier.admin.mapper.OrderDetailMapper">
+  <resultMap id="BaseResultMap" type="com.supplier.admin.domain.OrderDetail">
+    <id column="od_id" jdbcType="INTEGER" property="odId" />
+    <result column="o_id" jdbcType="VARCHAR" property="oId" />
+    <result column="p_id" jdbcType="VARCHAR" property="pId" />
+    <result column="p_num" jdbcType="INTEGER" property="pNum" />
+    <result column="p_price" jdbcType="DECIMAL" property="pPrice" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    od_id, o_id, p_id, p_num, p_price, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sup_order_detail
+    where od_id = #{odId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sup_order_detail
+    where od_id = #{odId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.supplier.admin.domain.OrderDetail">
+    insert into sup_order_detail (od_id, o_id, p_id, 
+      p_num, p_price, create_time
+      )
+    values (#{odId,jdbcType=INTEGER}, #{oId,jdbcType=VARCHAR}, #{pId,jdbcType=VARCHAR}, 
+      #{pNum,jdbcType=INTEGER}, #{pPrice,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.supplier.admin.domain.OrderDetail">
+    insert into sup_order_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="odId != null">
+        od_id,
+      </if>
+      <if test="oId != null">
+        o_id,
+      </if>
+      <if test="pId != null">
+        p_id,
+      </if>
+      <if test="pNum != null">
+        p_num,
+      </if>
+      <if test="pPrice != null">
+        p_price,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="odId != null">
+        #{odId,jdbcType=INTEGER},
+      </if>
+      <if test="oId != null">
+        #{oId,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null">
+        #{pId,jdbcType=VARCHAR},
+      </if>
+      <if test="pNum != null">
+        #{pNum,jdbcType=INTEGER},
+      </if>
+      <if test="pPrice != null">
+        #{pPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.supplier.admin.domain.OrderDetail">
+    update sup_order_detail
+    <set>
+      <if test="oId != null">
+        o_id = #{oId,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null">
+        p_id = #{pId,jdbcType=VARCHAR},
+      </if>
+      <if test="pNum != null">
+        p_num = #{pNum,jdbcType=INTEGER},
+      </if>
+      <if test="pPrice != null">
+        p_price = #{pPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where od_id = #{odId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.supplier.admin.domain.OrderDetail">
+    update sup_order_detail
+    set o_id = #{oId,jdbcType=VARCHAR},
+      p_id = #{pId,jdbcType=VARCHAR},
+      p_num = #{pNum,jdbcType=INTEGER},
+      p_price = #{pPrice,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where od_id = #{odId,jdbcType=INTEGER}
+  </update>
+</mapper>

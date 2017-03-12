@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.supplier.admin.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.supplier.admin.domain.Order">
+    <id column="o_id" jdbcType="VARCHAR" property="oId" />
+    <result column="m_id" jdbcType="VARCHAR" property="mId" />
+    <result column="o_status" jdbcType="VARCHAR" property="oStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="pay_type" jdbcType="VARCHAR" property="payType" />
+    <result column="total_price" jdbcType="DECIMAL" property="totalPrice" />
+    <result column="product_price" jdbcType="DECIMAL" property="productPrice" />
+    <result column="freight" jdbcType="DECIMAL" property="freight" />
+    <result column="total_weight" jdbcType="REAL" property="totalWeight" />
+    <result column="total_num" jdbcType="INTEGER" property="totalNum" />
+    <result column="logistics_sn" jdbcType="VARCHAR" property="logisticsSn" />
+    <result column="ogistics_type" jdbcType="VARCHAR" property="ogisticsType" />
+    <result column="delivery_time" jdbcType="TIMESTAMP" property="deliveryTime" />
+    <result column="confim_recive_time" jdbcType="TIMESTAMP" property="confimReciveTime" />
+    <result column="close_reason" jdbcType="VARCHAR" property="closeReason" />
+    <result column="close_time" jdbcType="TIMESTAMP" property="closeTime" />
+    <result column="cancel_time" jdbcType="TIMESTAMP" property="cancelTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    o_id, m_id, o_status, create_time, pay_time, pay_type, total_price, product_price, 
+    freight, total_weight, total_num, logistics_sn, ogistics_type, delivery_time, confim_recive_time, 
+    close_reason, close_time, cancel_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sup_order
+    where o_id = #{oId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sup_order
+    where o_id = #{oId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.supplier.admin.domain.Order">
+    insert into sup_order (o_id, m_id, o_status, 
+      create_time, pay_time, pay_type, 
+      total_price, product_price, freight, 
+      total_weight, total_num, logistics_sn, 
+      ogistics_type, delivery_time, confim_recive_time, 
+      close_reason, close_time, cancel_time
+      )
+    values (#{oId,jdbcType=VARCHAR}, #{mId,jdbcType=VARCHAR}, #{oStatus,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP}, #{payType,jdbcType=VARCHAR}, 
+      #{totalPrice,jdbcType=DECIMAL}, #{productPrice,jdbcType=DECIMAL}, #{freight,jdbcType=DECIMAL}, 
+      #{totalWeight,jdbcType=REAL}, #{totalNum,jdbcType=INTEGER}, #{logisticsSn,jdbcType=VARCHAR}, 
+      #{ogisticsType,jdbcType=VARCHAR}, #{deliveryTime,jdbcType=TIMESTAMP}, #{confimReciveTime,jdbcType=TIMESTAMP}, 
+      #{closeReason,jdbcType=VARCHAR}, #{closeTime,jdbcType=TIMESTAMP}, #{cancelTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.supplier.admin.domain.Order">
+    insert into sup_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="oId != null">
+        o_id,
+      </if>
+      <if test="mId != null">
+        m_id,
+      </if>
+      <if test="oStatus != null">
+        o_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="totalPrice != null">
+        total_price,
+      </if>
+      <if test="productPrice != null">
+        product_price,
+      </if>
+      <if test="freight != null">
+        freight,
+      </if>
+      <if test="totalWeight != null">
+        total_weight,
+      </if>
+      <if test="totalNum != null">
+        total_num,
+      </if>
+      <if test="logisticsSn != null">
+        logistics_sn,
+      </if>
+      <if test="ogisticsType != null">
+        ogistics_type,
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time,
+      </if>
+      <if test="confimReciveTime != null">
+        confim_recive_time,
+      </if>
+      <if test="closeReason != null">
+        close_reason,
+      </if>
+      <if test="closeTime != null">
+        close_time,
+      </if>
+      <if test="cancelTime != null">
+        cancel_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="oId != null">
+        #{oId,jdbcType=VARCHAR},
+      </if>
+      <if test="mId != null">
+        #{mId,jdbcType=VARCHAR},
+      </if>
+      <if test="oStatus != null">
+        #{oStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null">
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="productPrice != null">
+        #{productPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="freight != null">
+        #{freight,jdbcType=DECIMAL},
+      </if>
+      <if test="totalWeight != null">
+        #{totalWeight,jdbcType=REAL},
+      </if>
+      <if test="totalNum != null">
+        #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="logisticsSn != null">
+        #{logisticsSn,jdbcType=VARCHAR},
+      </if>
+      <if test="ogisticsType != null">
+        #{ogisticsType,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryTime != null">
+        #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confimReciveTime != null">
+        #{confimReciveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closeReason != null">
+        #{closeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="closeTime != null">
+        #{closeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelTime != null">
+        #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.supplier.admin.domain.Order">
+    update sup_order
+    <set>
+      <if test="mId != null">
+        m_id = #{mId,jdbcType=VARCHAR},
+      </if>
+      <if test="oStatus != null">
+        o_status = #{oStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null">
+        total_price = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="productPrice != null">
+        product_price = #{productPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="freight != null">
+        freight = #{freight,jdbcType=DECIMAL},
+      </if>
+      <if test="totalWeight != null">
+        total_weight = #{totalWeight,jdbcType=REAL},
+      </if>
+      <if test="totalNum != null">
+        total_num = #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="logisticsSn != null">
+        logistics_sn = #{logisticsSn,jdbcType=VARCHAR},
+      </if>
+      <if test="ogisticsType != null">
+        ogistics_type = #{ogisticsType,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confimReciveTime != null">
+        confim_recive_time = #{confimReciveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closeReason != null">
+        close_reason = #{closeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="closeTime != null">
+        close_time = #{closeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelTime != null">
+        cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where o_id = #{oId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.supplier.admin.domain.Order">
+    update sup_order
+    set m_id = #{mId,jdbcType=VARCHAR},
+      o_status = #{oStatus,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      product_price = #{productPrice,jdbcType=DECIMAL},
+      freight = #{freight,jdbcType=DECIMAL},
+      total_weight = #{totalWeight,jdbcType=REAL},
+      total_num = #{totalNum,jdbcType=INTEGER},
+      logistics_sn = #{logisticsSn,jdbcType=VARCHAR},
+      ogistics_type = #{ogisticsType,jdbcType=VARCHAR},
+      delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      confim_recive_time = #{confimReciveTime,jdbcType=TIMESTAMP},
+      close_reason = #{closeReason,jdbcType=VARCHAR},
+      close_time = #{closeTime,jdbcType=TIMESTAMP},
+      cancel_time = #{cancelTime,jdbcType=TIMESTAMP}
+    where o_id = #{oId,jdbcType=VARCHAR}
+  </update>
+</mapper>

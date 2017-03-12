@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.supplier.admin.mapper.MerchantMapper">
+  <resultMap id="BaseResultMap" type="com.supplier.admin.domain.Merchant">
+    <id column="m_id" jdbcType="VARCHAR" property="mId" />
+    <result column="m_name" jdbcType="VARCHAR" property="mName" />
+    <result column="m_linkman" jdbcType="VARCHAR" property="mLinkman" />
+    <result column="m_contact" jdbcType="VARCHAR" property="mContact" />
+    <result column="area_prov" jdbcType="VARCHAR" property="areaProv" />
+    <result column="area_city" jdbcType="VARCHAR" property="areaCity" />
+    <result column="area_district" jdbcType="VARCHAR" property="areaDistrict" />
+    <result column="m_account" jdbcType="VARCHAR" property="mAccount" />
+    <result column="m_pwd" jdbcType="VARCHAR" property="mPwd" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="last_ip" jdbcType="VARCHAR" property="lastIp" />
+    <result column="m_status" jdbcType="VARCHAR" property="mStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    m_id, m_name, m_linkman, m_contact, area_prov, area_city, area_district, m_account, 
+    m_pwd, create_time, update_time, last_login_time, last_ip, m_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sup_merchant
+    where m_id = #{mId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sup_merchant
+    where m_id = #{mId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.supplier.admin.domain.Merchant">
+    insert into sup_merchant (m_id, m_name, m_linkman, 
+      m_contact, area_prov, area_city, 
+      area_district, m_account, m_pwd, 
+      create_time, update_time, last_login_time, 
+      last_ip, m_status)
+    values (#{mId,jdbcType=VARCHAR}, #{mName,jdbcType=VARCHAR}, #{mLinkman,jdbcType=VARCHAR}, 
+      #{mContact,jdbcType=VARCHAR}, #{areaProv,jdbcType=VARCHAR}, #{areaCity,jdbcType=VARCHAR}, 
+      #{areaDistrict,jdbcType=VARCHAR}, #{mAccount,jdbcType=VARCHAR}, #{mPwd,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
+      #{lastIp,jdbcType=VARCHAR}, #{mStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.supplier.admin.domain.Merchant">
+    insert into sup_merchant
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mId != null">
+        m_id,
+      </if>
+      <if test="mName != null">
+        m_name,
+      </if>
+      <if test="mLinkman != null">
+        m_linkman,
+      </if>
+      <if test="mContact != null">
+        m_contact,
+      </if>
+      <if test="areaProv != null">
+        area_prov,
+      </if>
+      <if test="areaCity != null">
+        area_city,
+      </if>
+      <if test="areaDistrict != null">
+        area_district,
+      </if>
+      <if test="mAccount != null">
+        m_account,
+      </if>
+      <if test="mPwd != null">
+        m_pwd,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="lastIp != null">
+        last_ip,
+      </if>
+      <if test="mStatus != null">
+        m_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mId != null">
+        #{mId,jdbcType=VARCHAR},
+      </if>
+      <if test="mName != null">
+        #{mName,jdbcType=VARCHAR},
+      </if>
+      <if test="mLinkman != null">
+        #{mLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="mContact != null">
+        #{mContact,jdbcType=VARCHAR},
+      </if>
+      <if test="areaProv != null">
+        #{areaProv,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCity != null">
+        #{areaCity,jdbcType=VARCHAR},
+      </if>
+      <if test="areaDistrict != null">
+        #{areaDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="mAccount != null">
+        #{mAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="mPwd != null">
+        #{mPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastIp != null">
+        #{lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="mStatus != null">
+        #{mStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.supplier.admin.domain.Merchant">
+    update sup_merchant
+    <set>
+      <if test="mName != null">
+        m_name = #{mName,jdbcType=VARCHAR},
+      </if>
+      <if test="mLinkman != null">
+        m_linkman = #{mLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="mContact != null">
+        m_contact = #{mContact,jdbcType=VARCHAR},
+      </if>
+      <if test="areaProv != null">
+        area_prov = #{areaProv,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCity != null">
+        area_city = #{areaCity,jdbcType=VARCHAR},
+      </if>
+      <if test="areaDistrict != null">
+        area_district = #{areaDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="mAccount != null">
+        m_account = #{mAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="mPwd != null">
+        m_pwd = #{mPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastIp != null">
+        last_ip = #{lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="mStatus != null">
+        m_status = #{mStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where m_id = #{mId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.supplier.admin.domain.Merchant">
+    update sup_merchant
+    set m_name = #{mName,jdbcType=VARCHAR},
+      m_linkman = #{mLinkman,jdbcType=VARCHAR},
+      m_contact = #{mContact,jdbcType=VARCHAR},
+      area_prov = #{areaProv,jdbcType=VARCHAR},
+      area_city = #{areaCity,jdbcType=VARCHAR},
+      area_district = #{areaDistrict,jdbcType=VARCHAR},
+      m_account = #{mAccount,jdbcType=VARCHAR},
+      m_pwd = #{mPwd,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      last_ip = #{lastIp,jdbcType=VARCHAR},
+      m_status = #{mStatus,jdbcType=VARCHAR}
+    where m_id = #{mId,jdbcType=VARCHAR}
+  </update>
+</mapper>

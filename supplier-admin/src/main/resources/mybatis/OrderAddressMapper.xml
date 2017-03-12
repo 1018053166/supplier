@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.supplier.admin.mapper.OrderAddressMapper">
+  <resultMap id="BaseResultMap" type="com.supplier.admin.domain.OrderAddress">
+    <id column="oa_id" jdbcType="INTEGER" property="oaId" />
+    <result column="o_id" jdbcType="VARCHAR" property="oId" />
+    <result column="consignee" jdbcType="VARCHAR" property="consignee" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="area_prov" jdbcType="VARCHAR" property="areaProv" />
+    <result column="area_city" jdbcType="VARCHAR" property="areaCity" />
+    <result column="area_district" jdbcType="VARCHAR" property="areaDistrict" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    oa_id, o_id, consignee, phone, area_prov, area_city, area_district, detail, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sup_order_address
+    where oa_id = #{oaId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sup_order_address
+    where oa_id = #{oaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.supplier.admin.domain.OrderAddress">
+    insert into sup_order_address (oa_id, o_id, consignee, 
+      phone, area_prov, area_city, 
+      area_district, detail, create_time
+      )
+    values (#{oaId,jdbcType=INTEGER}, #{oId,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{areaProv,jdbcType=VARCHAR}, #{areaCity,jdbcType=VARCHAR}, 
+      #{areaDistrict,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.supplier.admin.domain.OrderAddress">
+    insert into sup_order_address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="oaId != null">
+        oa_id,
+      </if>
+      <if test="oId != null">
+        o_id,
+      </if>
+      <if test="consignee != null">
+        consignee,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="areaProv != null">
+        area_prov,
+      </if>
+      <if test="areaCity != null">
+        area_city,
+      </if>
+      <if test="areaDistrict != null">
+        area_district,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="oaId != null">
+        #{oaId,jdbcType=INTEGER},
+      </if>
+      <if test="oId != null">
+        #{oId,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null">
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="areaProv != null">
+        #{areaProv,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCity != null">
+        #{areaCity,jdbcType=VARCHAR},
+      </if>
+      <if test="areaDistrict != null">
+        #{areaDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.supplier.admin.domain.OrderAddress">
+    update sup_order_address
+    <set>
+      <if test="oId != null">
+        o_id = #{oId,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null">
+        consignee = #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="areaProv != null">
+        area_prov = #{areaProv,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCity != null">
+        area_city = #{areaCity,jdbcType=VARCHAR},
+      </if>
+      <if test="areaDistrict != null">
+        area_district = #{areaDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where oa_id = #{oaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.supplier.admin.domain.OrderAddress">
+    update sup_order_address
+    set o_id = #{oId,jdbcType=VARCHAR},
+      consignee = #{consignee,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      area_prov = #{areaProv,jdbcType=VARCHAR},
+      area_city = #{areaCity,jdbcType=VARCHAR},
+      area_district = #{areaDistrict,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where oa_id = #{oaId,jdbcType=INTEGER}
+  </update>
+</mapper>

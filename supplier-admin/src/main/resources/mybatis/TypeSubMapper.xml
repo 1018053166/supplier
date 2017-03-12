@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.supplier.admin.mapper.TypeSubMapper">
+  <resultMap id="BaseResultMap" type="com.supplier.admin.domain.TypeSub">
+    <id column="sub_id" jdbcType="VARCHAR" property="subId" />
+    <result column="sub_name" jdbcType="VARCHAR" property="subName" />
+    <result column="sub_icon" jdbcType="VARCHAR" property="subIcon" />
+    <result column="type_id" jdbcType="VARCHAR" property="typeId" />
+    <result column="sub_sort" jdbcType="INTEGER" property="subSort" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sub_id, sub_name, sub_icon, type_id, sub_sort, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sup_type_sub
+    where sub_id = #{subId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sup_type_sub
+    where sub_id = #{subId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.supplier.admin.domain.TypeSub">
+    insert into sup_type_sub (sub_id, sub_name, sub_icon, 
+      type_id, sub_sort, create_time, 
+      update_time)
+    values (#{subId,jdbcType=VARCHAR}, #{subName,jdbcType=VARCHAR}, #{subIcon,jdbcType=VARCHAR}, 
+      #{typeId,jdbcType=VARCHAR}, #{subSort,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.supplier.admin.domain.TypeSub">
+    insert into sup_type_sub
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="subId != null">
+        sub_id,
+      </if>
+      <if test="subName != null">
+        sub_name,
+      </if>
+      <if test="subIcon != null">
+        sub_icon,
+      </if>
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="subSort != null">
+        sub_sort,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="subId != null">
+        #{subId,jdbcType=VARCHAR},
+      </if>
+      <if test="subName != null">
+        #{subName,jdbcType=VARCHAR},
+      </if>
+      <if test="subIcon != null">
+        #{subIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="subSort != null">
+        #{subSort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.supplier.admin.domain.TypeSub">
+    update sup_type_sub
+    <set>
+      <if test="subName != null">
+        sub_name = #{subName,jdbcType=VARCHAR},
+      </if>
+      <if test="subIcon != null">
+        sub_icon = #{subIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null">
+        type_id = #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="subSort != null">
+        sub_sort = #{subSort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sub_id = #{subId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.supplier.admin.domain.TypeSub">
+    update sup_type_sub
+    set sub_name = #{subName,jdbcType=VARCHAR},
+      sub_icon = #{subIcon,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=VARCHAR},
+      sub_sort = #{subSort,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where sub_id = #{subId,jdbcType=VARCHAR}
+  </update>
+</mapper>

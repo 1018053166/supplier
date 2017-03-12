@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.supplier.admin.mapper.GoodSunitMapper">
+  <resultMap id="BaseResultMap" type="com.supplier.admin.domain.GoodSunit">
+    <id column="gu_id" jdbcType="INTEGER" property="guId" />
+    <result column="gu_code" jdbcType="VARCHAR" property="guCode" />
+    <result column="gu_goods_unit" jdbcType="VARCHAR" property="guGoodsUnit" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    gu_id, gu_code, gu_goods_unit
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sup_goodsunit
+    where gu_id = #{guId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sup_goodsunit
+    where gu_id = #{guId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.supplier.admin.domain.GoodSunit">
+    insert into sup_goodsunit (gu_id, gu_code, gu_goods_unit
+      )
+    values (#{guId,jdbcType=INTEGER}, #{guCode,jdbcType=VARCHAR}, #{guGoodsUnit,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.supplier.admin.domain.GoodSunit">
+    insert into sup_goodsunit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guId != null">
+        gu_id,
+      </if>
+      <if test="guCode != null">
+        gu_code,
+      </if>
+      <if test="guGoodsUnit != null">
+        gu_goods_unit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guId != null">
+        #{guId,jdbcType=INTEGER},
+      </if>
+      <if test="guCode != null">
+        #{guCode,jdbcType=VARCHAR},
+      </if>
+      <if test="guGoodsUnit != null">
+        #{guGoodsUnit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.supplier.admin.domain.GoodSunit">
+    update sup_goodsunit
+    <set>
+      <if test="guCode != null">
+        gu_code = #{guCode,jdbcType=VARCHAR},
+      </if>
+      <if test="guGoodsUnit != null">
+        gu_goods_unit = #{guGoodsUnit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where gu_id = #{guId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.supplier.admin.domain.GoodSunit">
+    update sup_goodsunit
+    set gu_code = #{guCode,jdbcType=VARCHAR},
+      gu_goods_unit = #{guGoodsUnit,jdbcType=VARCHAR}
+    where gu_id = #{guId,jdbcType=INTEGER}
+  </update>
+</mapper>

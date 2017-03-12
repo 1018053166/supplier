@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.supplier.admin.mapper.OrderLogMapper">
+  <resultMap id="BaseResultMap" type="com.supplier.admin.domain.OrderLog">
+    <id column="ol_id" jdbcType="INTEGER" property="olId" />
+    <result column="o_id" jdbcType="VARCHAR" property="oId" />
+    <result column="o_status" jdbcType="VARCHAR" property="oStatus" />
+    <result column="role" jdbcType="VARCHAR" property="role" />
+    <result column="o_log" jdbcType="VARCHAR" property="oLog" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ol_id, o_id, o_status, role, o_log, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sup_order_log
+    where ol_id = #{olId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sup_order_log
+    where ol_id = #{olId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.supplier.admin.domain.OrderLog">
+    insert into sup_order_log (ol_id, o_id, o_status, 
+      role, o_log, create_time
+      )
+    values (#{olId,jdbcType=INTEGER}, #{oId,jdbcType=VARCHAR}, #{oStatus,jdbcType=VARCHAR}, 
+      #{role,jdbcType=VARCHAR}, #{oLog,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.supplier.admin.domain.OrderLog">
+    insert into sup_order_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="olId != null">
+        ol_id,
+      </if>
+      <if test="oId != null">
+        o_id,
+      </if>
+      <if test="oStatus != null">
+        o_status,
+      </if>
+      <if test="role != null">
+        role,
+      </if>
+      <if test="oLog != null">
+        o_log,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="olId != null">
+        #{olId,jdbcType=INTEGER},
+      </if>
+      <if test="oId != null">
+        #{oId,jdbcType=VARCHAR},
+      </if>
+      <if test="oStatus != null">
+        #{oStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="oLog != null">
+        #{oLog,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.supplier.admin.domain.OrderLog">
+    update sup_order_log
+    <set>
+      <if test="oId != null">
+        o_id = #{oId,jdbcType=VARCHAR},
+      </if>
+      <if test="oStatus != null">
+        o_status = #{oStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        role = #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="oLog != null">
+        o_log = #{oLog,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ol_id = #{olId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.supplier.admin.domain.OrderLog">
+    update sup_order_log
+    set o_id = #{oId,jdbcType=VARCHAR},
+      o_status = #{oStatus,jdbcType=VARCHAR},
+      role = #{role,jdbcType=VARCHAR},
+      o_log = #{oLog,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where ol_id = #{olId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.supplier.admin.mapper.AreaMapper">
+  <resultMap id="BaseResultMap" type="com.supplier.admin.domain.Area">
+    <id column="aid" jdbcType="INTEGER" property="aid" />
+    <result column="area_id" jdbcType="VARCHAR" property="areaId" />
+    <result column="area_name" jdbcType="VARCHAR" property="areaName" />
+    <result column="area_pid" jdbcType="VARCHAR" property="areaPid" />
+    <result column="area_zipcode" jdbcType="VARCHAR" property="areaZipcode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    aid, area_id, area_name, area_pid, area_zipcode
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sup_area
+    where aid = #{aid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sup_area
+    where aid = #{aid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.supplier.admin.domain.Area">
+    insert into sup_area (aid, area_id, area_name, 
+      area_pid, area_zipcode)
+    values (#{aid,jdbcType=INTEGER}, #{areaId,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, 
+      #{areaPid,jdbcType=VARCHAR}, #{areaZipcode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.supplier.admin.domain.Area">
+    insert into sup_area
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="aid != null">
+        aid,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="areaName != null">
+        area_name,
+      </if>
+      <if test="areaPid != null">
+        area_pid,
+      </if>
+      <if test="areaZipcode != null">
+        area_zipcode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="aid != null">
+        #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null">
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaPid != null">
+        #{areaPid,jdbcType=VARCHAR},
+      </if>
+      <if test="areaZipcode != null">
+        #{areaZipcode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.supplier.admin.domain.Area">
+    update sup_area
+    <set>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null">
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaPid != null">
+        area_pid = #{areaPid,jdbcType=VARCHAR},
+      </if>
+      <if test="areaZipcode != null">
+        area_zipcode = #{areaZipcode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where aid = #{aid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.supplier.admin.domain.Area">
+    update sup_area
+    set area_id = #{areaId,jdbcType=VARCHAR},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      area_pid = #{areaPid,jdbcType=VARCHAR},
+      area_zipcode = #{areaZipcode,jdbcType=VARCHAR}
+    where aid = #{aid,jdbcType=INTEGER}
+  </update>
+</mapper>

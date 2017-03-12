@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.supplier.admin.mapper.ProductImagesMapper">
+  <resultMap id="BaseResultMap" type="com.supplier.admin.domain.ProductImages">
+    <id column="img_id" jdbcType="INTEGER" property="imgId" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="img_sort" jdbcType="INTEGER" property="imgSort" />
+    <result column="p_id" jdbcType="VARCHAR" property="pId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    img_id, img_url, img_sort, p_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sup_product_images
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sup_product_images
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.supplier.admin.domain.ProductImages">
+    insert into sup_product_images (img_id, img_url, img_sort, 
+      p_id, create_time)
+    values (#{imgId,jdbcType=INTEGER}, #{imgUrl,jdbcType=VARCHAR}, #{imgSort,jdbcType=INTEGER}, 
+      #{pId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.supplier.admin.domain.ProductImages">
+    insert into sup_product_images
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="imgId != null">
+        img_id,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="imgSort != null">
+        img_sort,
+      </if>
+      <if test="pId != null">
+        p_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="imgId != null">
+        #{imgId,jdbcType=INTEGER},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgSort != null">
+        #{imgSort,jdbcType=INTEGER},
+      </if>
+      <if test="pId != null">
+        #{pId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.supplier.admin.domain.ProductImages">
+    update sup_product_images
+    <set>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgSort != null">
+        img_sort = #{imgSort,jdbcType=INTEGER},
+      </if>
+      <if test="pId != null">
+        p_id = #{pId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.supplier.admin.domain.ProductImages">
+    update sup_product_images
+    set img_url = #{imgUrl,jdbcType=VARCHAR},
+      img_sort = #{imgSort,jdbcType=INTEGER},
+      p_id = #{pId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </update>
+</mapper>

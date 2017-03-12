@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.supplier.admin.mapper.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.supplier.admin.domain.Product">
+    <id column="pid" jdbcType="VARCHAR" property="pid" />
+    <result column="p_name" jdbcType="VARCHAR" property="pName" />
+    <result column="p_code" jdbcType="VARCHAR" property="pCode" />
+    <result column="p_subtitle" jdbcType="VARCHAR" property="pSubtitle" />
+    <result column="p_image" jdbcType="VARCHAR" property="pImage" />
+    <result column="type_id" jdbcType="VARCHAR" property="typeId" />
+    <result column="sub_id" jdbcType="VARCHAR" property="subId" />
+    <result column="gu_id" jdbcType="VARCHAR" property="guId" />
+    <result column="p_net_weight" jdbcType="REAL" property="pNetWeight" />
+    <result column="p_gross_weight" jdbcType="REAL" property="pGrossWeight" />
+    <result column="p_price" jdbcType="DECIMAL" property="pPrice" />
+    <result column="p_ market_price" jdbcType="DECIMAL" property="pMarketPrice" />
+    <result column="p_cost_price" jdbcType="DECIMAL" property="pCostPrice" />
+    <result column="p_weight" jdbcType="INTEGER" property="pWeight" />
+    <result column="p_status" jdbcType="VARCHAR" property="pStatus" />
+    <result column="p_deleted" jdbcType="INTEGER" property="pDeleted" />
+    <result column="p_memo" jdbcType="VARCHAR" property="pMemo" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.supplier.admin.domain.Product">
+    <result column="p_detail" jdbcType="LONGVARCHAR" property="pDetail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pid, p_name, p_code, p_subtitle, p_image, type_id, sub_id, gu_id, p_net_weight, p_gross_weight, 
+    p_price, "p_ market_price", p_cost_price, p_weight, p_status, p_deleted, p_memo, 
+    create_time, update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    p_detail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sup_product
+    where pid = #{pid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sup_product
+    where pid = #{pid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.supplier.admin.domain.Product">
+    insert into sup_product (pid, p_name, p_code, 
+      p_subtitle, p_image, type_id, 
+      sub_id, gu_id, p_net_weight, 
+      p_gross_weight, p_price, "p_ market_price", 
+      p_cost_price, p_weight, p_status, 
+      p_deleted, p_memo, create_time, 
+      update_time, p_detail)
+    values (#{pid,jdbcType=VARCHAR}, #{pName,jdbcType=VARCHAR}, #{pCode,jdbcType=VARCHAR}, 
+      #{pSubtitle,jdbcType=VARCHAR}, #{pImage,jdbcType=VARCHAR}, #{typeId,jdbcType=VARCHAR}, 
+      #{subId,jdbcType=VARCHAR}, #{guId,jdbcType=VARCHAR}, #{pNetWeight,jdbcType=REAL}, 
+      #{pGrossWeight,jdbcType=REAL}, #{pPrice,jdbcType=DECIMAL}, #{pMarketPrice,jdbcType=DECIMAL}, 
+      #{pCostPrice,jdbcType=DECIMAL}, #{pWeight,jdbcType=INTEGER}, #{pStatus,jdbcType=VARCHAR}, 
+      #{pDeleted,jdbcType=INTEGER}, #{pMemo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{pDetail,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.supplier.admin.domain.Product">
+    insert into sup_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="pName != null">
+        p_name,
+      </if>
+      <if test="pCode != null">
+        p_code,
+      </if>
+      <if test="pSubtitle != null">
+        p_subtitle,
+      </if>
+      <if test="pImage != null">
+        p_image,
+      </if>
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="subId != null">
+        sub_id,
+      </if>
+      <if test="guId != null">
+        gu_id,
+      </if>
+      <if test="pNetWeight != null">
+        p_net_weight,
+      </if>
+      <if test="pGrossWeight != null">
+        p_gross_weight,
+      </if>
+      <if test="pPrice != null">
+        p_price,
+      </if>
+      <if test="pMarketPrice != null">
+        "p_ market_price",
+      </if>
+      <if test="pCostPrice != null">
+        p_cost_price,
+      </if>
+      <if test="pWeight != null">
+        p_weight,
+      </if>
+      <if test="pStatus != null">
+        p_status,
+      </if>
+      <if test="pDeleted != null">
+        p_deleted,
+      </if>
+      <if test="pMemo != null">
+        p_memo,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="pDetail != null">
+        p_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pid != null">
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="pName != null">
+        #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="pCode != null">
+        #{pCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pSubtitle != null">
+        #{pSubtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pImage != null">
+        #{pImage,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="subId != null">
+        #{subId,jdbcType=VARCHAR},
+      </if>
+      <if test="guId != null">
+        #{guId,jdbcType=VARCHAR},
+      </if>
+      <if test="pNetWeight != null">
+        #{pNetWeight,jdbcType=REAL},
+      </if>
+      <if test="pGrossWeight != null">
+        #{pGrossWeight,jdbcType=REAL},
+      </if>
+      <if test="pPrice != null">
+        #{pPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="pMarketPrice != null">
+        #{pMarketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="pCostPrice != null">
+        #{pCostPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="pWeight != null">
+        #{pWeight,jdbcType=INTEGER},
+      </if>
+      <if test="pStatus != null">
+        #{pStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="pDeleted != null">
+        #{pDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="pMemo != null">
+        #{pMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pDetail != null">
+        #{pDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.supplier.admin.domain.Product">
+    update sup_product
+    <set>
+      <if test="pName != null">
+        p_name = #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="pCode != null">
+        p_code = #{pCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pSubtitle != null">
+        p_subtitle = #{pSubtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pImage != null">
+        p_image = #{pImage,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null">
+        type_id = #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="subId != null">
+        sub_id = #{subId,jdbcType=VARCHAR},
+      </if>
+      <if test="guId != null">
+        gu_id = #{guId,jdbcType=VARCHAR},
+      </if>
+      <if test="pNetWeight != null">
+        p_net_weight = #{pNetWeight,jdbcType=REAL},
+      </if>
+      <if test="pGrossWeight != null">
+        p_gross_weight = #{pGrossWeight,jdbcType=REAL},
+      </if>
+      <if test="pPrice != null">
+        p_price = #{pPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="pMarketPrice != null">
+        "p_ market_price" = #{pMarketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="pCostPrice != null">
+        p_cost_price = #{pCostPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="pWeight != null">
+        p_weight = #{pWeight,jdbcType=INTEGER},
+      </if>
+      <if test="pStatus != null">
+        p_status = #{pStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="pDeleted != null">
+        p_deleted = #{pDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="pMemo != null">
+        p_memo = #{pMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pDetail != null">
+        p_detail = #{pDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where pid = #{pid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.supplier.admin.domain.Product">
+    update sup_product
+    set p_name = #{pName,jdbcType=VARCHAR},
+      p_code = #{pCode,jdbcType=VARCHAR},
+      p_subtitle = #{pSubtitle,jdbcType=VARCHAR},
+      p_image = #{pImage,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=VARCHAR},
+      sub_id = #{subId,jdbcType=VARCHAR},
+      gu_id = #{guId,jdbcType=VARCHAR},
+      p_net_weight = #{pNetWeight,jdbcType=REAL},
+      p_gross_weight = #{pGrossWeight,jdbcType=REAL},
+      p_price = #{pPrice,jdbcType=DECIMAL},
+      "p_ market_price" = #{pMarketPrice,jdbcType=DECIMAL},
+      p_cost_price = #{pCostPrice,jdbcType=DECIMAL},
+      p_weight = #{pWeight,jdbcType=INTEGER},
+      p_status = #{pStatus,jdbcType=VARCHAR},
+      p_deleted = #{pDeleted,jdbcType=INTEGER},
+      p_memo = #{pMemo,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      p_detail = #{pDetail,jdbcType=LONGVARCHAR}
+    where pid = #{pid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.supplier.admin.domain.Product">
+    update sup_product
+    set p_name = #{pName,jdbcType=VARCHAR},
+      p_code = #{pCode,jdbcType=VARCHAR},
+      p_subtitle = #{pSubtitle,jdbcType=VARCHAR},
+      p_image = #{pImage,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=VARCHAR},
+      sub_id = #{subId,jdbcType=VARCHAR},
+      gu_id = #{guId,jdbcType=VARCHAR},
+      p_net_weight = #{pNetWeight,jdbcType=REAL},
+      p_gross_weight = #{pGrossWeight,jdbcType=REAL},
+      p_price = #{pPrice,jdbcType=DECIMAL},
+      "p_ market_price" = #{pMarketPrice,jdbcType=DECIMAL},
+      p_cost_price = #{pCostPrice,jdbcType=DECIMAL},
+      p_weight = #{pWeight,jdbcType=INTEGER},
+      p_status = #{pStatus,jdbcType=VARCHAR},
+      p_deleted = #{pDeleted,jdbcType=INTEGER},
+      p_memo = #{pMemo,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where pid = #{pid,jdbcType=VARCHAR}
+  </update>
+</mapper>

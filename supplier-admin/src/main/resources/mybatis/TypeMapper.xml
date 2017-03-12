@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.supplier.admin.mapper.TypeMapper">
+  <resultMap id="BaseResultMap" type="com.supplier.admin.domain.Type">
+    <id column="type_id" jdbcType="VARCHAR" property="typeId" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="type_icon" jdbcType="VARCHAR" property="typeIcon" />
+    <result column="type_sort" jdbcType="INTEGER" property="typeSort" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    type_id, type_name, type_icon, type_sort, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sup_type
+    where type_id = #{typeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sup_type
+    where type_id = #{typeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.supplier.admin.domain.Type">
+    insert into sup_type (type_id, type_name, type_icon, 
+      type_sort, create_time, update_time
+      )
+    values (#{typeId,jdbcType=VARCHAR}, #{typeName,jdbcType=VARCHAR}, #{typeIcon,jdbcType=VARCHAR}, 
+      #{typeSort,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.supplier.admin.domain.Type">
+    insert into sup_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="typeName != null">
+        type_name,
+      </if>
+      <if test="typeIcon != null">
+        type_icon,
+      </if>
+      <if test="typeSort != null">
+        type_sort,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="typeId != null">
+        #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null">
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeIcon != null">
+        #{typeIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="typeSort != null">
+        #{typeSort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.supplier.admin.domain.Type">
+    update sup_type
+    <set>
+      <if test="typeName != null">
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeIcon != null">
+        type_icon = #{typeIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="typeSort != null">
+        type_sort = #{typeSort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where type_id = #{typeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.supplier.admin.domain.Type">
+    update sup_type
+    set type_name = #{typeName,jdbcType=VARCHAR},
+      type_icon = #{typeIcon,jdbcType=VARCHAR},
+      type_sort = #{typeSort,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where type_id = #{typeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.supplier.admin.mapper.ProductAttributeMapper">
+  <resultMap id="BaseResultMap" type="com.supplier.admin.domain.ProductAttribute">
+    <id column="attr_id" jdbcType="INTEGER" property="attrId" />
+    <result column="attr_name" jdbcType="VARCHAR" property="attrName" />
+    <result column="attr_value" jdbcType="VARCHAR" property="attrValue" />
+    <result column="p_id" jdbcType="VARCHAR" property="pId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    attr_id, attr_name, attr_value, p_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sup_product_attribute
+    where attr_id = #{attrId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sup_product_attribute
+    where attr_id = #{attrId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.supplier.admin.domain.ProductAttribute">
+    insert into sup_product_attribute (attr_id, attr_name, attr_value, 
+      p_id)
+    values (#{attrId,jdbcType=INTEGER}, #{attrName,jdbcType=VARCHAR}, #{attrValue,jdbcType=VARCHAR}, 
+      #{pId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.supplier.admin.domain.ProductAttribute">
+    insert into sup_product_attribute
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="attrId != null">
+        attr_id,
+      </if>
+      <if test="attrName != null">
+        attr_name,
+      </if>
+      <if test="attrValue != null">
+        attr_value,
+      </if>
+      <if test="pId != null">
+        p_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="attrId != null">
+        #{attrId,jdbcType=INTEGER},
+      </if>
+      <if test="attrName != null">
+        #{attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="attrValue != null">
+        #{attrValue,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null">
+        #{pId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.supplier.admin.domain.ProductAttribute">
+    update sup_product_attribute
+    <set>
+      <if test="attrName != null">
+        attr_name = #{attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="attrValue != null">
+        attr_value = #{attrValue,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null">
+        p_id = #{pId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where attr_id = #{attrId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.supplier.admin.domain.ProductAttribute">
+    update sup_product_attribute
+    set attr_name = #{attrName,jdbcType=VARCHAR},
+      attr_value = #{attrValue,jdbcType=VARCHAR},
+      p_id = #{pId,jdbcType=VARCHAR}
+    where attr_id = #{attrId,jdbcType=INTEGER}
+  </update>
+</mapper>
